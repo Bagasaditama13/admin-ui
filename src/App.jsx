@@ -3,46 +3,66 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
+
+function LoginForm() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    // Handle login functionality here
+    console.log('Email:', email, 'Password:', password);
+  };
 
   return (
-    <>
-      <div className="min-h-screen bg-neutral-800 flex flex-col items-center justify-center text-center">
-        <div className="flex items-center justify-center space-x-8 mb-12">
-          <a href="https://vite.dev" target="_blank">
-            <img src={viteLogo} 
-            className="w-24 h-24 animate-pulse" 
-            alt="Vite logo" 
-            style={{ animationDuration: '0.8s' }}
-            />
-          </a>
-          <a href="https://react.dev" target="_blank">
-            <img
-             src={reactLogo} 
-             className="w-24 h-24 animate-spin" 
-             alt="React logo" 
-             style={{ animationDuration: '0.8s' }}
-             />
-          </a>
+    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+      <div className="flex bg-white shadow-lg rounded-lg w-[900px] h-[400px]">
+        {/* Left Side (Image) */}
+        <div className="w-1/2 bg-gray-300 flex justify-center items-center">
+          <span className="text-xl text-gray-500">600 x 500</span>
         </div>
-        <h1 className="text-white text-6xl font-bold mb-16">"Vite + React</h1>
-        <div className="text-sm space-y-6 mb-8">
-          <button 
-          onClick={() => setCount((count) => count + 1)}
-          className="bg-neutral-900 text-white py-2 px-6 rounded-lg text-lg">
-          count is {count}
-        </button>
-        <p className='text-neutral-500'>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+
+        {/* Right Side (Login Form) */}
+        <div className="w-1/2 p-8">
+          <h2 className="text-2xl font-semibold text-center mb-6">Login</h2>
+          <form onSubmit={handleLogin}>
+            <div className="mb-4">
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                Email
+              </label>
+              <input
+                id="email"
+                type="email"
+                placeholder="Masukkan email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full p-3 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+            <div className="mb-6">
+              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+                Password
+              </label>
+              <input
+                id="password"
+                type="password"
+                placeholder="Masukkan password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full p-3 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+            <button
+              type="submit"
+              className="w-full py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-200"
+            >
+              Login
+            </button>
+          </form>
+        </div>
       </div>
-      <p className="text-neutral-500">
-        Click on the Vite and React logos to learn more
-      </p>
-      </div>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default LoginForm;
